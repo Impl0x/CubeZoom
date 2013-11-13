@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RunJump
+namespace CubeZoom
 {
     /// <summary>
     /// Represents a point or offset in two-dimensional space.

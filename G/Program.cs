@@ -1,27 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-using OpenTK;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
-
-namespace G
+namespace CubeZoom
 {
     class Program
     {
-        /// <summary>
-        /// Entry point of this example.
-        /// </summary>
         [STAThread]
         public static void Main()
         {
-            using (T03_Immediate_Mode_Cube example = new T03_Immediate_Mode_Cube())
+            using (T03_Immediate_Mode_Cube cube = new T03_Immediate_Mode_Cube())
             {
-                example.Run();
+                cube.Run();
             }
         }
     }

@@ -1,48 +1,24 @@
-﻿#region --- License ---
-/* Licensed under the MIT/X11 license.
- * Copyright (c) 2006-2008 the OpenTK Team.
- * This notice may not be removed from any source distribution.
- * See license.txt for licensing detailed licensing details.
- */
-#endregion
-
-#region --- Using Directives ---
-
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Threading;
-using System.Drawing;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
-#endregion
-
-namespace G
+namespace CubeZoom
 {
-    /// <summary>
-    /// Demonstrates immediate mode rendering.
-    /// </summary>
     public class T03_Immediate_Mode_Cube : GameWindow
     {
-        #region --- Fields ---
         Vector3 up = new Vector3(0.0f, 0.0f, 1.0f);
         Camera _Camera;
         List<Color> colors = new List<Color>();
         Random rand = new Random();
-        #endregion
-
-        #region --- Constructor ---
 
         public T03_Immediate_Mode_Cube()
             : base(800, 600, new GraphicsMode(16, 16))
         { }
 
-        #endregion
-
-        #region OnLoad
 
         protected override void OnLoad(EventArgs e)
         {
@@ -57,24 +33,11 @@ namespace G
         /// <summary>
         /// Handles change in zoom using the mouse wheel.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         void Mouse_WheelChanged(object sender, OpenTK.Input.MouseWheelEventArgs e)
         {
             this._Camera.ZoomVelocity -= 5.0 * e.DeltaPrecise;
         }
 
-        #endregion
-
-        #region OnResize
-
-        /// <summary>
-        /// Called when the user resizes the window.
-        /// </summary>
-        /// <param name="e">Contains the new width/height of the window.</param>
-        /// <remarks>
-        /// You want the OpenGL viewport to match the window. This is the place to do it!
-        /// </remarks>
         protected override void OnResize(EventArgs e)
         {
             base.OnResize(e);
@@ -82,17 +45,6 @@ namespace G
             GL.Viewport(0, 0, Width, Height);
         }
 
-        #endregion
-
-        #region OnUpdateFrame
-
-        /// <summary>
-        /// Prepares the next frame for rendering.
-        /// </summary>
-        /// <remarks>
-        /// Place your control logic here. This is the place to respond to user input,
-        /// update object positions etc.
-        /// </remarks>
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
@@ -113,7 +65,8 @@ namespace G
                     this._Camera.Phi = Math.Min(Math.PI / 2.0000001, Math.Max(Math.PI / -2.000001, this._Camera.Phi));
                 }
                 Console.Clear();
-                Console.WriteLine("Theta: {0}\nPhi: {1}\nZoom: {2}\nRoll: {3}", this._Camera.Theta, this._Camera.Phi, this._Camera.Radius, this._Camera.Roll % 360.0);
+                Console.WriteLine("Theta: {0}\nPhi: {1}\nZoom: {2}\nRoll: {3}", 
+                    this._Camera.Theta, this._Camera.Phi, this._Camera.Radius, this._Camera.Roll % 360.0);
                 if (Keyboard[OpenTK.Input.Key.Escape])
                 {
                     this.Exit();
@@ -135,13 +88,6 @@ namespace G
             else Cursor.Show();
         }
 
-        #endregion
-
-        #region OnRenderFrame
-
-        /// <summary>
-        /// Place your rendering code here.
-        /// </summary>
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
@@ -165,9 +111,6 @@ namespace G
             this.SwapBuffers();
         }
 
-        #endregion
-
-        #region DrawCube()
         private void GetColors()
         {
             foreach (string colorName in Enum.GetNames(typeof(KnownColor)))
@@ -234,6 +177,5 @@ namespace G
 
             GL.End();
         }
-        #endregion
     }
 }

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using OpenTK;
+using System;
 using System.Diagnostics;
-using System.Windows.Forms;
-using System.Threading;
-using System.Drawing;
 
-using OpenTK;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
-
-namespace G
+namespace CubeZoom
 {
     class Camera : ICloneable
     {
@@ -75,8 +68,6 @@ namespace G
         /// <summary>
         /// Ken Perlin's smoothstep function.
         /// </summary>
-        /// <param name="t"></param>
-        /// <returns></returns>
         private double Smootherstep(double t)
         {
             double x = Math.Min(1.0, Math.Max(0.0, t));
@@ -87,7 +78,6 @@ namespace G
         /// Update's the camera based on mouse control.
         /// Also handles resetting the camera's orientation.
         /// </summary>
-        /// <param name="dT"></param>
         public void Update(double dT)
         {
             if (!IsResetting)
